@@ -13,6 +13,7 @@ type Inputs = {
 export default function RegistraionPage() {
   let [coverImage, setCoverImage] = useState("");
   let [profileImage, setProfileImage] = useState("");
+  const [res,setRes] = useState("")
   const {
     register,
     handleSubmit,
@@ -38,10 +39,9 @@ export default function RegistraionPage() {
     const resposne = await fetch("http://localhost:8201/users/register", {
       method: "POST",
       body: formData,
-    });
-
-    let res = await resposne.json();
-    console.log(res);
+    })
+    .then((response) =>{ return response.json})
+    .then((res) =>{setRes(res)})
   };
   return (
     <form action="" onSubmit={handleSubmit(onSubmit)}  >
@@ -385,12 +385,14 @@ export default function RegistraionPage() {
         <Link to="/login" className="text-sm/6 font-semibold text-gray-900">
           Cancel
         </Link>
+        <Link to="/login">
         <button
           type="submit"
           className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
-          Save
+            Save
         </button>
+        </Link>
       </div>
     </form>
   );

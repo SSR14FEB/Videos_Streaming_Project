@@ -160,7 +160,9 @@ const logInUser = asyncHandler(async (req, res) => {
   if (!user) {
     throw new apiError(404, "User dose not exist");
   }
-
+  if(!user.isVarified){
+    throw new apiError(404, "Please verify your email first");
+  }
   const isPasswordValid = await user.isPasswordCorrect(password);
 
   console.log(isPasswordValid);

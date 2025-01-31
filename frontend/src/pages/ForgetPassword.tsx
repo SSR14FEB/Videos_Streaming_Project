@@ -36,7 +36,16 @@ function ForgetPassword() {
         },1000)
       });
   };
-  const email = res?.data?.email
+  console.log(res)
+  let userName,domainName = ""
+  let email = res?.data?.email || ""
+  let avatar = res?.data?.avatar || ""
+  console.log(avatar)
+  if(email){
+    let parts = email.split("@")
+    userName = parts[0].slice(0,4)+"****@"
+    domainName = parts[1]
+  }
   return (
     <div className="w-[60vw] h-[70vh] flex justify-center items-center">
       <form
@@ -93,13 +102,28 @@ function ForgetPassword() {
 
         <div
           className={`p-5 w-full h-full ${
-            userInput && button ? "flex" : "hidden"
-          } flex-col justify-center rounded-sm items-center `}
+            userInput && button && res ? "flex" : "hidden"
+          } flex-col justify-between rounded-sm items-center `}
         >
           <div className={res ? "hidden" : "relative"}>
             <Loader />
           </div>
-          <p>{email}</p>
+          <div className="h-24 w-24 flex justify-center border-white border-4 rounded-full shadow-xl overflow-hidden ">
+            <img src={`${avatar}`} alt="" className="w-full h-full object-cover rounded-full" />
+          </div>
+          <p className="font-semibold">{userName+domainName}</p>
+          <p>We sent an email to  with a link to get back into your account.</p>
+          <div className="w-full h-1/3 flex flex-wrap justify-center items-end">
+            <button
+              className="w-3/4 h-1/4 rounded-2xl bg-indigo-600 text-white text-lg font-bold hover:bg-indigo-500"
+              disabled={!userInput}
+              onClick={() => {
+                setButton(true);
+              }}
+            >
+              Next
+            </button>
+          </div>
         </div>
       </form>
     </div>
