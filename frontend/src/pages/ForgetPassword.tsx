@@ -20,7 +20,7 @@ function ForgetPassword() {
     formState: { errors },
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    await fetch("http://localhost:8201/users/find-user", {
+    await fetch("http://localhost:8201/users/forgect_password", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

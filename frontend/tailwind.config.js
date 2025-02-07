@@ -55,6 +55,9 @@ export default {
   			},
 			  backgroundImage: {
 				'custom-pattern': "url('/img/default.jpg')",
+			  },
+			  fontFamily: {
+				raleway: ['Raleway', 'sans-serif'],
 			  }
   		}
   	}

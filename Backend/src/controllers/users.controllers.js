@@ -160,7 +160,7 @@ const logInUser = asyncHandler(async (req, res) => {
   if (!user) {
     throw new apiError(404, "User dose not exist");
   }
-  if(!user.isVarified){
+  if(!user.isVerified){
     throw new apiError(404, "Please verify your email first");
   }
   const isPasswordValid = await user.isPasswordCorrect(password);
@@ -292,13 +292,29 @@ const changeCurrentPassword = asyncHandler(async (req, res) => {
     .json(new apiResponse(200, {}, "Current password changed successfully"));
 });
 
+const getUserDetials = asyncHandler(async(req,res)=>{
+  console.log()
+  const {userDetails} = req.body
+  
+  const user = await User.findOne(userDetails
+  ).select("-_id -password -watchHistory -uplodedVideos -updatedAt -verifyToken -verifyTokeyExpiry")
+
+  if(!user){
+    throw new apiError(404,"user not found")
+  }
+  return res
+  .status(200)
+  .json(new apiResponse(200,user,"matched users"))
+})
+
 const getUserCredentials=asyncHandler(async(req,res)=>{
-  const {userCredentials} = req.body
+  console.log()
+  const userCredentials = req.query.userName
   console.log(userCredentials)
   
   const user = await User.findOne({
     $or:[{userName:userCredentials}, {email:userCredentials} ]
-  })
+  }).select("-_id -password -email -watchHistory -uplodedVideos -updatedAt -verifyToken -verifyTokeyExpiry")
 
   if(!user){
     throw new apiError(404,"user not found")
@@ -568,5 +584,6 @@ export {
   getUserChanelProfile,
   getUserVideo,
   getUserWatchHistory,
+  getUserDetials,
   getUserCredentials
 };

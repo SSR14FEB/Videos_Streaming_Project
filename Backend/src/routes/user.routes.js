@@ -9,6 +9,7 @@ import {
     registerUser, 
     upadteAccountDetalis, 
     updatedUserAvatar, 
+    getUserDetials,
     updatedUserCoverIamger 
 } from '../controllers/users.controllers.js'
 import { upload } from '../middlewares/multer.middlewares.js'
@@ -53,7 +54,7 @@ router
 .post(refershAcessToken)
 
 router
-.route("/get-current-user/:userId")
+.route("/get-current-user/:userName")
 .get(jwtValidation,currentUser)
 
 router
@@ -86,6 +87,10 @@ router
 
 router
 .route("/find-user")
-.post(getUserCredentials)
+.get(getUserCredentials)
+
+router
+.route("/forgect_password")
+.post(getUserDetials)
 
 export default router  

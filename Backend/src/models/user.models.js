@@ -84,7 +84,7 @@ const userSchema = new Schema(
     verifyTokeyExpiry:{
       type:Date
     },
-    isVarified:{
+    isVerified:{
       type: Boolean,
       default: false,
     },

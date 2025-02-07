@@ -3,7 +3,7 @@ import { ChevronDownIcon } from "@heroicons/react/16/solid";
 import { useForm, SubmitHandler, Form } from "react-hook-form";
 import { useState } from "react";
 import { profile } from "console";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 
 type Inputs = {
   example: string;
@@ -13,6 +13,7 @@ type Inputs = {
 export default function RegistraionPage() {
   let [coverImage, setCoverImage] = useState("");
   let [profileImage, setProfileImage] = useState("");
+  const navigate = useNavigate()
   const [res,setRes] = useState("")
   const {
     register,
@@ -35,14 +36,16 @@ export default function RegistraionPage() {
     formData.append("state", data.state);
     formData.append("city", data.city);
     formData.append("postalCode", data.postalCode);
-
     const resposne = await fetch("http://localhost:8201/users/register", {
       method: "POST",
       body: formData,
     })
-    .then((response) =>{ return response.json})
-    .then((res) =>{setRes(res)})
+    .then((response) => response.json()) 
+    .then((res) => {
+      navigate("/validet-your-email",{state:{userName:res.data.userName}})
+    });
   };
+
   return (
     <form action="" onSubmit={handleSubmit(onSubmit)}  >
       <div className="space-y-12">
@@ -385,14 +388,14 @@ export default function RegistraionPage() {
         <Link to="/login" className="text-sm/6 font-semibold text-gray-900">
           Cancel
         </Link>
-        <Link to="/login">
         <button
           type="submit"
           className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
+       
             Save
+     
         </button>
-        </Link>
       </div>
     </form>
   );

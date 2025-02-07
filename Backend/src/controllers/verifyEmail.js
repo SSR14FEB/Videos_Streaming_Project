@@ -8,7 +8,7 @@ const verifyEmail = asyncHandler(async(req, res) => {
     const {token} = req.query
     console.log("token",token)
     
-    const user = await User.findOne({
+    let user = await User.findOne({
       verifyToken: token,
       verifyTokeyExpiry: { $gt: Date.now() },
     });
@@ -17,11 +17,11 @@ const verifyEmail = asyncHandler(async(req, res) => {
       throw new apiError(400, "Invlid Token");
     }
 
-    user.isVarified = true;
+    user.isVerified = true;
     user.verifyToken = undefined;
     user.verifyTokeyExpiry = undefined;
-    user.save();
-
+    await user.save();
+    console.log(user)
     return res.status(200)
     .json(new apiResponse(200,"user verification successfull"))
 

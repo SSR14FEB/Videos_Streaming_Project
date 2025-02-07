@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import RegistraionPage from '@/pages/RegistrationPage'
 import HeroPage from '@/pages/HeroPage'
 import ForgetPassword from '@/pages/forgetPassword'
+import Authentication from '@/pages/Authentication'
 
 export default function Routers() {
 const routes = createBrowserRouter([
@@ -17,6 +18,10 @@ element:<HeroPage/>
 {
     path:"/singup",
     element:<RegistraionPage/>
+},
+{
+    path:"/validet-your-email",
+    element:<Authentication/>
 },
 {
     path:"/forgetPassword",

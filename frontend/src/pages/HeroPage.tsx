@@ -1,9 +1,9 @@
 
 function HeroPage() {
   return (
-    <div>
-      Hero Page
-    </div>
+  <div className="w-[60vw] h-[70vh] flex justify-center items-center">
+   hero page
+  </div>
   )
 }
 
