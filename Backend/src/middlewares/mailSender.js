@@ -1,26 +1,30 @@
 import nodemailer from "nodemailer";
-import bcrypt from "bcrypt"
-import {User}from "../models/user.models.js";
+import bcrypt from "bcrypt";
+import { User } from "../models/user.models.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { apiError } from "../utils/apiError.js";
 import { apiResponse } from "../utils/apiResponse.js";
 
-const mailSender = asyncHandler(async(req,res) => {
+const mailSender = asyncHandler(async (req, res) => {
   try {
     // creat token
     // const { email, password, userId } = req.body
 
-    console.log("i am here")
-    console.log("userId",req.user._id)
-    const hashedToken = await bcrypt.hash(req.user._id.toString(),10)
-    await console.log("hashed token",hashedToken)
+    console.log("i am here");
+    console.log("userId", req.user._id);
+    const hashedToken = await bcrypt.hash(req.user._id.toString(), 10);
+    await console.log("hashed token", hashedToken);
 
-    const user =  await User.findByIdAndUpdate(req.user._id,{
-        verifyToken:hashedToken,
-        verifyTokeyExpiry:Date.now() + 3600000 
-    },{new:true})
-    
-     console.log("user",user)
+    const user = await User.findByIdAndUpdate(
+      req.user._id,
+      {
+        verifyToken: hashedToken,
+        verifyTokenExpiry: Date.now() + 3600000,
+      },
+      { new: true }
+    );
+
+    console.log("user", user);
     // Looking to send emails in production? Check out our Email API/SMTP product!
     var transport = await nodemailer.createTransport({
       host: "sandbox.smtp.mailtrap.io",
@@ -32,21 +36,21 @@ const mailSender = asyncHandler(async(req,res) => {
     });
 
     let mailOption = {
-        from :'sonukumar.official501@gmail.com',
-        to : user.email,
-        subject: 'verify your email',
-        html:`<p>click <a href="${process.env.DOMAIN_NAME}/users/verifyToken?token=${hashedToken}">here</a> to verify your email</p>`
-    }
+      from: "sonukumar.official501@gmail.com",
+      to: user.email,
+      subject: "verify your email",
+      html: `<body>
+    <p>click <a href="${process.env.DOMAIN_NAME}/users/verifyToken?token=${hashedToken}">here</a> to verify your email</p> 
+    </body>`,
+    };
 
-    console.log(mailOption.html)
+    console.log(mailOption.html);
 
-    const mailInfo = await transport.sendMail(mailOption)
-    console.log(mailInfo)
-  
-
+    const mailInfo = await transport.sendMail(mailOption);
+    console.log(mailInfo);
   } catch (error) {
     console.log("error while sending vaildation mail", error);
   }
-})
- 
-export {mailSender}
+});
+
+export { mailSender };

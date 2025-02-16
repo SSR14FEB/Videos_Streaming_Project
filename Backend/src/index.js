@@ -1,8 +1,9 @@
 import dotenv from 'dotenv'
 import { asyncHandler } from './utils/asyncHandler.js'
 import connectDB from './db_connection/index.js'
-import { app } from './app.js'
+// import { app } from './app.js'
 import { registerUser } from './controllers/users.controllers.js'
+import {httpServer} from './app.js'
 
 dotenv.config({
     path:'./env'
@@ -11,10 +12,10 @@ dotenv.config({
 //MONGODB CONNECTION 
 connectDB()
 .then(()=>{
-    app.listen(process.env.PORT||8201,()=>{
+    httpServer.listen(process.env.PORT||8201,()=>{
     console.log(`SERVER IS RUNNIG ON PROT || ${process.env.PORT}`)
 })
-    app.on("error",(error)=>{
+httpServer.on("error",(error)=>{
     console.log(`MONGODB CONNECTION ERROR || ${error}`)
 })
 })

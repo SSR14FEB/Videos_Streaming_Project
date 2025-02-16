@@ -19,7 +19,6 @@ import { jwtValidation} from '../middlewares/auth.middlewares.js'
 import { mailSender } from '../middlewares/mailSender.js'
 import { refershAcessToken } from '../controllers/users.controllers.js'
 import { verifyEmail } from '../controllers/verifyEmail.js'
-
 const router = Router()
 
 router
@@ -93,4 +92,5 @@ router
 .route("/forgect_password")
 .post(getUserDetials)
 
+router
 export default router  

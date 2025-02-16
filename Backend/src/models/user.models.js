@@ -81,7 +81,7 @@ const userSchema = new Schema(
     verifyToken: {
       type: String,
     },
-    verifyTokeyExpiry:{
+    verifyTokenExpiry:{
       type:Date
     },
     isVerified:{

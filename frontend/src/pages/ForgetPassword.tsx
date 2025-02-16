@@ -36,7 +36,7 @@ function ForgetPassword() {
         },1000)
       });
   };
-  console.log(res)
+
   let userName,domainName = ""
   let email = res?.data?.email || ""
   let avatar = res?.data?.avatar || ""
