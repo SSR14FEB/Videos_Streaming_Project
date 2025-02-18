@@ -31,23 +31,25 @@ function ForgetPassword() {
         return response.json();
       })
       .then((res) => {
-        setTimeout(()=>{
+        setTimeout(() => {
           setRes(res);
-        },1000)
+          console.log(res)
+        }, 3000);
       });
   };
 
-  let userName,domainName = ""
-  let email = res?.data?.email || ""
-  let avatar = res?.data?.avatar || ""
-  console.log(avatar)
-  if(email){
-    let parts = email.split("@")
-    userName = parts[0].slice(0,4)+"****@"
-    domainName = parts[1]
+  let userName,
+    domainName = "";
+  let email = res?.data?.email || "";
+  let avatar = res?.data?.avatar || "";
+  console.log(avatar);
+  if (email) {
+    let parts = email.split("@");
+    userName = parts[0].slice(0, 4) + "****@";
+    domainName = parts[1];
   }
   return (
-    <div className="w-[60vw] h-[70vh] flex justify-center items-center">
+    <div className="w-[60vw] h-[70vh] flex flex-wrap m-20 justify-center items-center">
       <form
         action=""
         onSubmit={handleSubmit(onSubmit)}
@@ -68,7 +70,7 @@ function ForgetPassword() {
             <label htmlFor="find" className="font-bold text-2xl">
               Find your account.
             </label>
-            <p className=" mt-4">
+            <p className=" mt-4  ">
               Enter the email,and username associated with your account to
               change your password.
             </p>
@@ -87,7 +89,7 @@ function ForgetPassword() {
           </div>
           <div className="w-full h-full flex flex-wrap justify-center items-end">
             <button
-              className="w-3/4 h-1/4 rounded-2xl bg-indigo-600 text-white text-lg font-bold hover:bg-indigo-500"
+              className="w-3/4 h-1/3 rounded-2xl bg-indigo-600 text-white text-lg font-bold hover:bg-indigo-500"
               disabled={!userInput}
               onClick={() => {
                 setButton(true);
@@ -98,21 +100,31 @@ function ForgetPassword() {
           </div>
         </div>
 
-        {/* Loder */}
+        {/* Loader */}
+        {res?"":<div
+          className={` ${
+            userInput && button ? " w-full h-full flex flex-wrap justify-center  items-center " : "hidden h-none w-none"
+          } `}
+        >
+          <div className={res ? "hidden": "flex"}>
+            <Loader  />
+          </div>
+        </div>}
 
         <div
           className={`p-5 w-full h-full ${
             userInput && button && res ? "flex" : "hidden"
           } flex-col justify-between rounded-sm items-center `}
         >
-          <div className={res ? "hidden" : "relative"}>
-            <Loader />
-          </div>
           <div className="h-24 w-24 flex justify-center border-white border-4 rounded-full shadow-xl overflow-hidden ">
-            <img src={`${avatar}`} alt="" className="w-full h-full object-cover rounded-full" />
+            <img
+              src={`${avatar}`}
+              alt=""
+              className="w-full h-full object-cover rounded-full"
+            />
           </div>
-          <p className="font-semibold">{userName+domainName}</p>
-          <p>We sent an email to  with a link to get back into your account.</p>
+          <p className="font-semibold">{userName + domainName}</p>
+          <p>We sent an email to with a link to get back into your account.</p>
           <div className="w-full h-1/3 flex flex-wrap justify-center items-end">
             <button
               className="w-3/4 h-1/4 rounded-2xl bg-indigo-600 text-white text-lg font-bold hover:bg-indigo-500"

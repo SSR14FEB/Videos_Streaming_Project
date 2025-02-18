@@ -47,7 +47,7 @@ export default function RegistraionPage() {
   };
 
   return (
-    <form action="" onSubmit={handleSubmit(onSubmit)}  >
+    <form action="" onSubmit={handleSubmit(onSubmit)} className="m-10" >
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-base/7 text-left font-semibold text-gray-900">

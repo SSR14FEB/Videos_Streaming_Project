@@ -293,10 +293,10 @@ const changeCurrentPassword = asyncHandler(async (req, res) => {
 });
 
 const getUserDetials = asyncHandler(async(req,res)=>{
-  console.log()
-  const {userDetails} = req.body
-  
-  const user = await User.findOne(userDetails
+  console.log(req.body)
+  const {userCredentials} = req.body
+  console.log(userCredentials)
+  const user = await User.findOne({email:userCredentials}
   ).select("-_id -password -watchHistory -uplodedVideos -updatedAt -verifyToken -verifyTokeyExpiry")
 
   if(!user){
