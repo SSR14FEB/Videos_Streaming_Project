@@ -22,9 +22,8 @@ const verifyEmail = asyncHandler(async (req, res) => {
     user.verifyTokenExpiry = undefined;
     await user.save();
     console.log("user", user);
-    return res
-      .sendFile(path.resolve("./public/index.html"))
-      .json(new apiResponse(200, "user verification successful"));
+    return res.status(200)
+    .json(new apiResponse(200,user,"✔️ Great! You have been successfully verified"));
   } catch (error) {
     throw new apiError(500, "Some thing went wrong while verfing token");
   }

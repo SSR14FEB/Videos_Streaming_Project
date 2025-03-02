@@ -2,7 +2,7 @@ import { Router } from "express";
 import { videosUplodedByUser } from "../controllers/videos.controllers.js";
 import { jwtValidation } from "../middlewares/auth.middlewares.js";
 import { upload } from "../middlewares/multer.middlewares.js";
-import { Pages } from "../controllers/Pages.js";
+import { Pages } from "../controllers/page.controllers.js";
 const router = Router()
 
 router
@@ -15,5 +15,6 @@ router
     { name: "videoFile", maxCount: 1 },
     { name: "thumbnail", maxCount: 1 }
 ]),videosUplodedByUser)
+
 
 export default router 

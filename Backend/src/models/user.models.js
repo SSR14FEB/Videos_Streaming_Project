@@ -65,7 +65,7 @@ const userSchema = new Schema(
         ref: "Videos",
       },
     ],
-    uplodedVideos: [
+    uplodedVideos:[
       {
         type: Schema.Types.ObjectId,
         ref: "Videos",

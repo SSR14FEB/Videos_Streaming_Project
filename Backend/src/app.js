@@ -23,7 +23,7 @@ app.use(cors({
 }))
 
 app.use(express.json({limit:"16kb"})) // this is use to set be json limit
-app.use(express.urlencoded({extended:true,limit:"16kb"})) // this is use to unecode url 
+app.use(express.urlencoded({extended:true,limit:"16kb"})) // this is use to unecoded url 
 // app.use(express.static("public"))
 app.use(express.static(path.resolve("/public")))
 app.use(cookieParser())

@@ -531,6 +531,8 @@ const getUserWatchHistory = asyncHandler(async (req, res) => {
 });
 
 const getUserVideo = asyncHandler(async (req, res) => {
+  console.log(req.params.userName)
+  console.log(req.user._id)
 
   const user = await User.aggregate([
     {
@@ -543,10 +545,11 @@ const getUserVideo = asyncHandler(async (req, res) => {
         from: "videos",
         localField: "_id",
         foreignField: "owner",
-        as: "uplodedVideos",
+        as: "uploadedVideos",
         pipeline: [
           {
             $project: {
+              owner:1,
               title: 1,
               thumbnail: 1,
               videoFile: 1,

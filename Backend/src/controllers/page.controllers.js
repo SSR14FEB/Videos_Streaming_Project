@@ -5,8 +5,7 @@ import {Videos} from '../models/video.models.js'
 
 
 const Pages = asyncHandler(async(req, res) => {
-
-    const {page,limit,search} = req.query
+    const {page=1,limit=10,search=""} = req.query
 
          const aggregateQuery =  Videos.aggregate([
             {
