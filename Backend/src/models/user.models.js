@@ -21,10 +21,6 @@ const userSchema = new Schema(
       lowercase: true,
       required: [true, "email is required"],
     },
-    Phone:{
-      type:Number,
-      unique:true
-    },
     firstName: {
       type: String,
       trim: true,

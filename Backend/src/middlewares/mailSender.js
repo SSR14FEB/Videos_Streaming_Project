@@ -12,6 +12,7 @@ const mailSender = asyncHandler(async (req, res) => {
 
     console.log("i am here");
     console.log("userId", req.user._id);
+    
     const hashedToken = await bcrypt.hash(req.user._id.toString(), 10);
     await console.log("hashed token", hashedToken);
 

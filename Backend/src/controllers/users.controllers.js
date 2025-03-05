@@ -49,16 +49,16 @@ const registerUser = asyncHandler(async (req, res,next) => {
     state,
     postalCode} = req.body;
 
-    console.log(userName,
-      about, 
-      firstName, 
-      lastName, 
-      email, 
-      password,
-      country,
-      city,
-      state,
-      postalCode)
+    // console.log(userName,
+    //   about, 
+    //   firstName, 
+    //   lastName, 
+    //   email, 
+    //   password,
+    //   country,
+    //   city,
+    //   state,
+    //   postalCode)
 
   if (
     [ firstName, 

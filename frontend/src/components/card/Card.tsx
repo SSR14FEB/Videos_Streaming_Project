@@ -63,7 +63,7 @@ export default function Card() {
           </div>
           <div className="flex flex-col">
             <b>{file.title}</b>
-            <b>{file.owner}</b>
+            <b>{file.userName}</b>
           </div>
         </div>
         <div className=" w-full h-fit ">
