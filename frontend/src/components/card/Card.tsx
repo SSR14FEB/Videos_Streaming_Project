@@ -40,11 +40,11 @@ export default function Card() {
     cardData.map((file,index)=>
       <div
       key={index}
-      className="w-96 h-72 rounded-2xl flex flex-wrap justify-center  "
+      className="w-96 h-72 rounded-2xl flex flex-wrap justify-center shadow-md "
       onMouseEnter={()=>handleMouseEnter(index)}
       onMouseLeave={()=>handleMosueLeave(index)}
       >
-        <div className="  w-full h-3/5">
+        <div className=" w-full h-3/5">
           {videoUrl ? (
             <video
               ref={(el)=>(videoRef.current[index] =el)}
@@ -57,7 +57,7 @@ export default function Card() {
             <p>vidoe is loading</p>
           )}
         </div>
-        <div className=" h-12 w-full flex flex-wrap justify-start items-center gap-2">
+        <div className=" h-12 w-full flex flex-wrap justify-start items-center gap-2 ml-2">
           <div className="w-12 h-full rounded-full bg-gray-400 flex flex-wrap justify-center items-center">
             <img className="h-full w-full object-cover rounded-full" src={file.avatar} alt="" />
           </div>
