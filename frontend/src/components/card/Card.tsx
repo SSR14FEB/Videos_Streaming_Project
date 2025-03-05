@@ -57,13 +57,13 @@ export default function Card() {
             <p>vidoe is loading</p>
           )}
         </div>
-        <div className=" h-1/5 w-full flex flex-wrap justify-start items-center gap-2">
+        <div className=" h-12 w-full flex flex-wrap justify-start items-center gap-2">
           <div className="w-12 h-full rounded-full bg-gray-400 flex flex-wrap justify-center items-center">
-            <strong className="text-white">SK</strong>
+            <img className="h-full w-full object-cover rounded-full" src={file.avatar} alt="" />
           </div>
           <div className="flex flex-col">
             <b>{file.title}</b>
-            <b>{file.userName}</b>
+            <b className="text-gray-600">{file.userName}</b>
           </div>
         </div>
         <div className=" w-full h-fit ">
