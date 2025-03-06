@@ -1,23 +1,29 @@
-import { useForm, SubmitHandler, set } from "react-hook-form";
+import { useForm, SubmitHandler} from "react-hook-form";
 import { GiTireIronCross } from "react-icons/gi";
 import { Link } from "react-router";
 import Loader from "@/components/Loader";
-import { ChangeEvent, InputHTMLAttributes, useEffect, useState } from "react";
+import { useState } from "react";
 
 type Inputs = {
   example: string;
   exampleRequired: string;
+  userCredentials: string;
 };
 function ForgetPassword() {
-  const [userInput, setUserInput] = useState<String>();
+  const [userInput, setUserInput] = useState<string>();
   const [button, setButton] = useState<boolean>(false);
-  const [isPending, setIsPending] = useState(false);
-  let [res, setRes] = useState("");
+  // const [isPending, setIsPending] = useState(false);
+  interface ResponseData {
+    data: {
+      email: string;
+      avatar: string;
+    };
+  }
+  
+  let [res, setRes] = useState<ResponseData | null>(null);
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     await fetch("http://localhost:8201/users/forgect_password", {
@@ -33,18 +39,18 @@ function ForgetPassword() {
       .then((res) => {
         setTimeout(() => {
           setRes(res);
-          console.log(res)
+
         }, 3000);
       });
   };
 
   let userName,
     domainName = "";
-  let email = res?.data?.email || "";
-  let avatar = res?.data?.avatar || "";
+  const email = res?.data?.email || "";
+  const avatar = res?.data?.avatar || "";
   console.log(avatar);
   if (email) {
-    let parts = email.split("@");
+    const parts = email.split("@");
     userName = parts[0].slice(0, 4) + "****@";
     domainName = parts[1];
   }

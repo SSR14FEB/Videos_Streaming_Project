@@ -1,29 +1,39 @@
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import { ChevronDownIcon } from "@heroicons/react/16/solid";
-import { useForm, SubmitHandler, Form } from "react-hook-form";
+import { useForm} from "react-hook-form";
 import { useState } from "react";
-import { profile } from "console";
+
 import { Link, useNavigate } from "react-router-dom";
 
 type Inputs = {
   example: string;
   exampleRequired: string;
+  userName: string;
+  about: string;
+  avatar: FileList;
+  coverImage: FileList;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  country: string;
+  state: string;
+  city: string;
+  postalCode: string;
+  streetAddress: string;
 };
-
 export default function RegistraionPage() {
-  let [coverImage, setCoverImage] = useState("");
-  let [profileImage, setProfileImage] = useState("");
+  const [coverImage, setCoverImage] = useState("");
+  const [profileImage, setProfileImage] = useState("");
   const navigate = useNavigate()
-  const [res,setRes] = useState("")
+
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
   } = useForm<Inputs>();
 
-  let onSubmit = async (data) => {
-    let formData = new FormData();
+  const onSubmit = async (data: Inputs) => {
+    const formData = new FormData();
     formData.append("userName", data.userName.toLowerCase());
     formData.append("about", data.about);
     formData.append("avatar", data.avatar[0]);
@@ -36,7 +46,7 @@ export default function RegistraionPage() {
     formData.append("state", data.state);
     formData.append("city", data.city);
     formData.append("postalCode", data.postalCode);
-    const resposne = await fetch("http://localhost:8201/users/register", {
+    await fetch("http://localhost:8201/users/register", {
       method: "POST",
       body: formData,
     })
@@ -138,8 +148,10 @@ export default function RegistraionPage() {
                   type="file"
                   accept="image/*"
                   onChange={(event) => {
-                    const file = event.target.files[0] || " ";
-                    setProfileImage(URL.createObjectURL(file));
+                    const file = event.target.files ? event.target.files[0] : " ";
+                    if (file instanceof File) {
+                      setProfileImage(URL.createObjectURL(file));
+                    }
                   }}
                 />
               </div>
@@ -175,8 +187,10 @@ export default function RegistraionPage() {
                         type="file"
                         {...register("coverImage")}
                         onChange={(event) => {
-                          const file = event.target.files[0] || " ";
-                          setCoverImage(URL.createObjectURL(file));
+                          const file = event.target.files ? event.target.files[0] : " ";
+                          if (file instanceof File) {
+                            setCoverImage(URL.createObjectURL(file));
+                          }
                         }}
                         accept="image/*"
                         className="sr-only"
@@ -293,7 +307,7 @@ export default function RegistraionPage() {
               <div className="mt-2 grid grid-cols-1">
                 <select
                   id="country"
-                  name="country"
+                  
                   autoComplete="country-name"
                   className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                   {...register("country")}
@@ -318,8 +332,7 @@ export default function RegistraionPage() {
               </label>
               <div className="mt-2">
                 <input
-                  id="street-address"
-                  {...register("street-address")}
+                  {...register("streetAddress")}
                   type="text"
                   autoComplete="street-address"
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"

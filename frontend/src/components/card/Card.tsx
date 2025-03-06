@@ -2,8 +2,16 @@ import { useEffect, useState } from "react";
 import { useRef } from "react";
 export default function Card() {
   const [videoUrl, setVideoUrl] = useState("");
-  const [cardData, setCardData] = useState([]);
-  const videoRef = useRef<HTMLVideoElement>([]);
+  interface CardData {
+    videoFile: string;
+    thumbnail: string;
+    avatar: string;
+    title: string;
+    userName: string;
+  }
+
+  const [cardData, setCardData] = useState<CardData[]>([]);
+  const videoRef = useRef<(HTMLVideoElement | null)[]>([]);
 
   useEffect(() => {
     (async () => {
@@ -21,14 +29,14 @@ export default function Card() {
   }, []);
 
   console.log(cardData);
-  const handleMouseEnter = (index) => {
+  const handleMouseEnter = (index: number) => {
     if (videoRef.current[index]) {
       videoRef.current[index].muted = true; // Important for autoplay
       videoRef.current[index].play();
     }
   };
 
-  const handleMosueLeave = (index) => {
+  const handleMosueLeave = (index:number) => {
     if (videoRef.current[index]) {
       videoRef.current[index].pause();
       videoRef.current[index].currentTime = 0;

@@ -1,5 +1,5 @@
 import Card from "@/components/card/Card";
-import Search from "@/components/ui/Search";
+import Search from "@/components/ui/search";
 function HeroPage() {
   return (
     <>

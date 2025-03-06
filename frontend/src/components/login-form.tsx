@@ -10,8 +10,13 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useForm, SubmitHandler } from "react-hook-form"
-import { json } from "stream/consumers"
+import { useForm } from "react-hook-form"
+
+type Inputs = {
+  email: string;
+  password: string;
+};
+
 
 export function LoginForm({
   className,
@@ -20,12 +25,10 @@ export function LoginForm({
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
   } = useForm<Inputs>()
 
- const onSubmit = async(data)=>{
-  let response = await fetch("http://localhost:8201/users/login",{method:"POST",headers:{
+ const onSubmit = async(data: Inputs)=>{
+   const response = await fetch("http://localhost:8201/users/login",{method:"POST",headers:{
     "Content-Type":"application/json"
   },body:JSON.stringify(data)})
   let res = await response.json()
