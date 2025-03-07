@@ -6,8 +6,6 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 type Inputs = {
-  example: string;
-  exampleRequired: string;
   userName: string;
   about: string;
   avatar: FileList;

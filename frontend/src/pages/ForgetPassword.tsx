@@ -5,8 +5,6 @@ import Loader from "@/components/Loader";
 import { useState } from "react";
 
 type Inputs = {
-  example: string;
-  exampleRequired: string;
   userCredentials: string;
 };
 function ForgetPassword() {
