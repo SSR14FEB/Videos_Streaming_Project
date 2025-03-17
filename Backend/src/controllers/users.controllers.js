@@ -296,8 +296,8 @@ const getUserDetials = asyncHandler(async(req,res)=>{
   console.log(req.body)
   const {userCredentials} = req.body
   console.log(userCredentials)
-  const user = await User.findOne({email:userCredentials}
-  ).select("-_id -password -watchHistory -uplodedVideos -updatedAt -verifyToken -verifyTokeyExpiry")
+  const user = await User.findOne({$or:[{email:userCredentials},{userName:userCredentials}]
+}).select("-_id -password -watchHistory -uplodedVideos -updatedAt -verifyToken -verifyTokeyExpiry")
 
   if(!user){
     throw new apiError(404,"user not found")

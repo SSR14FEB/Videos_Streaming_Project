@@ -41,7 +41,7 @@ const mailSender = asyncHandler(async (req, res) => {
       to: user.email,
       subject: "verify your email",
       html: `<body>
-      <p>click <a href="${process.env.DOMAIN_NAME}/users/verifyToken?token=${hashedToken}">here</a> to verify your email</p> 
+      <p>click <a href="${process.env.DEVLOPENT_SERVER_DOMAIN_NAME}/users/verifyToken?token=${hashedToken}">here</a> to verify your email</p>
     </body>`,
     };
 

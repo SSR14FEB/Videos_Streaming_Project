@@ -1,7 +1,7 @@
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import { ChevronDownIcon } from "@heroicons/react/16/solid";
-import { useForm} from "react-hook-form";
-import { useState } from "react";
+import { set, useForm} from "react-hook-form";
+import { useEffect, useState } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 
@@ -50,9 +50,10 @@ export default function RegistraionPage() {
     })
     .then((response) => response.json()) 
     .then((res) => {
-      navigate("/validet-your-email",{state:{userName:res.data.userName}})
+      navigate("/validet-your-email")
     });
   };
+
 
   return (
     <form action="" onSubmit={handleSubmit(onSubmit)} className="m-10" >

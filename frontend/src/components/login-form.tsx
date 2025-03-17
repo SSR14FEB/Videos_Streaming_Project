@@ -28,10 +28,14 @@ export function LoginForm({
   } = useForm<Inputs>()
 
  const onSubmit = async(data: Inputs)=>{
-   const response = await fetch("http://localhost:8201/users/login",{method:"POST",headers:{
-    "Content-Type":"application/json"
-  },body:JSON.stringify(data)})
-  let res = await response.json()
+   const response = await fetch("http://localhost:8201/users/login",
+    {
+      method:"POST",
+      headers:{
+      "Content-Type":"application/json"
+    },
+    body:JSON.stringify(data)})
+     let res = await response.json()
   console.log(res)
  }
 

@@ -48,7 +48,7 @@ export default function Card() {
     cardData.map((file,index)=>
       <div
       key={index}
-      className="w-96 h-72 rounded-2xl flex flex-wrap justify-center shadow-md "
+      className="w-96 h-72 rounded-2xl flex flex-wrap justify-center shadow-md scroll-smooth"
       onMouseEnter={()=>handleMouseEnter(index)}
       onMouseLeave={()=>handleMosueLeave(index)}
       >
@@ -66,7 +66,7 @@ export default function Card() {
           )}
         </div>
         <div className=" h-12 w-full flex flex-wrap justify-start items-center gap-2 ml-2">
-          <div className="w-12 h-full rounded-full bg-gray-400 flex flex-wrap justify-center items-center">
+          <div className="w-12 h-full rounded-full bg-gray-400 flex flex-wrap justify-center items-center border-white">
             <img className="h-full w-full object-cover rounded-full" src={file.avatar} alt="" />
           </div>
           <div className="flex flex-col">
