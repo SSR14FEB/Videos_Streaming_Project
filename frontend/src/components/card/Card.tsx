@@ -48,7 +48,7 @@ export default function Card() {
     cardData.map((file,index)=>
       <div
       key={index}
-      className="w-96 h-72 rounded-2xl flex flex-wrap justify-center shadow-md scroll-smooth"
+      className="w-96 h-72 rounded-2xl flex flex-wrap justify-center  scroll-smooth"
       onMouseEnter={()=>handleMouseEnter(index)}
       onMouseLeave={()=>handleMosueLeave(index)}
       >

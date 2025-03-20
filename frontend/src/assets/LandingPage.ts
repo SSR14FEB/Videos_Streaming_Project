@@ -1,0 +1,1 @@
+export const FirstBannerImage ="https://res.cloudinary.com/dabcrcxpu/image/upload/v1742443667/tianshu-liu-khQY5Eu-aa0-unsplash_g0bhyv.jpg"

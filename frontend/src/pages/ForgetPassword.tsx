@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler} from "react-hook-form";
 import { GiTireIronCross } from "react-icons/gi";
 import { Link } from "react-router";
-import Loader from "@/components/Loader";
+import {Loader} from "@/components/Loader";
 import { useState } from "react";
 
 type Inputs = {

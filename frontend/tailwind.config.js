@@ -53,12 +53,12 @@ export default {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			},
-			  backgroundImage: {
-				'custom-pattern': "url('/img/default.jpg')",
-			  },
-			  fontFamily: {
-				raleway: ['Raleway', 'sans-serif'],
-			  }
+  			fontFamily: {
+  				raleway: [
+  					'Raleway',
+  					'sans-serif'
+  				]
+  			},
   		}
   	}
   },

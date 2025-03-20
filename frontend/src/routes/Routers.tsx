@@ -4,7 +4,7 @@ import RegistraionPage from '@/pages/RegistrationPage'
 import HeroPage from '@/pages/HeroPage'
 import ForgetPassword from '@/pages/ForgetPassword'
 import Authentication from '@/pages/Authentication'
-
+import VideoUpload from '@/pages/VideoUpload'
 export default function Routers() {
 const routes = createBrowserRouter([
 {
@@ -26,6 +26,10 @@ element:<HeroPage/>
 {
     path:"/forgetPassword",
     element:<ForgetPassword/>
+},
+{
+  path:"/upload",
+  element:<VideoUpload/>
 }
 ])
   return (
