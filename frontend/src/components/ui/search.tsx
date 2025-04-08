@@ -5,10 +5,10 @@ function search() {
     <input
       type="search"
       placeholder="Search"
-      className="w-4/6 h-full rounded-l-3xl border-indigo-200 border-2 border-r-0 pl-5 pr-5 focus-within:outline-none shadow-md "
+      className="w-4/6 h-full rounded-l-3xl  border-slate-300 border-2 border-r-0 pl-5 pr-5 focus-within:outline-none "
     />
-    <div className="h-full w-16 bg-gradient-to-r bg-slate-600 rounded-r-3xl flex justify-center items-center shadow-md">
-    <IoMdSearch color="white" size={25} className="" />
+    <div className="h-full w-16 bg-white  border-slate-300 border-2 rounded-r-3xl flex justify-center items-center ">
+    <IoMdSearch color="black" size={25} className="" />
     </div>
   </search>
   )

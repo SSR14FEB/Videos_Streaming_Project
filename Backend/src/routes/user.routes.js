@@ -53,7 +53,7 @@ router
 .post(refershAcessToken)
 
 router
-.route("/get-current-user/:userName")
+.route("/get-current-user")
 .get(jwtValidation,currentUser)
 
 router

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 export default function UploadButton() {
   const nevigatePath = useNavigate();
   const [isActive, setIsActive] = useState(false);
-  const nevigateToUploadVideos = () => {
+  const nevigateToUploadVideos = async() => {
     setIsActive(!isActive);
     nevigatePath("/upload");
   };

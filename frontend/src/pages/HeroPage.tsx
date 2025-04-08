@@ -4,32 +4,80 @@ import UploadButton from "@/components/upload-Button/UploadButton";
 import Logo from "@/components/Logo/Logo";
 import { CgProfile } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
-import IntroPage from "./IntroPage";
+import Aside from "../components/aside/Aside"
 import { IoNotificationsCircleSharp } from "react-icons/io5";
-import { nanoid } from 'nanoid'
+import { nanoid } from "nanoid";
+
+import useLoginHook from "../custom_hooks/useLoginHook";
+import SignupButton from "@/components/Signup_Button/SignupButton";
+import { useState } from "react";
+import Toast from "@/components/toast/Toast";
 
 function HeroPage() {
-  const id = nanoid() 
+
+  const id = nanoid();
+  const res = useLoginHook() || "";
   const nevigateTo = useNavigate();
-  const nevigateToLoginPage=()=>{
-    nevigateTo("/login")
+  
+  const nevigateToLoginPage = () => {
+    nevigateTo("/login");
+  };
+
+  const [asideVisual,setAsideVisual] = useState(true)
+  const asideFunction=()=>{
+    setAsideVisual(!asideVisual)
   }
+
   return (
     <>
-      <header className="sm:w-full h-12 flex justify-between items-center bg-white scroll-smooth fixed shadow-md z-10">
-      <Logo/>
-      <Search/>
-      <div className="flex gap-2 justify-center items-center abolute mr-28">
-      <IoNotificationsCircleSharp size={30} className="hover:text-indigo-500 hover:animate-out hover:rotate-12 "/>
-      <UploadButton/>
-      <CgProfile size={30} onClick={nevigateToLoginPage} className="hover:text-indigo-500 cursor-pointer"/>
-      </div>
+      <header className="sm:min-w-full h-12 flex flex-wrap justify-between items-center bg-white scroll-smooth fixed z-10">
+        <div className=" ml-20 w-32 h-full flex   items-center" onClick={asideFunction}  >
+        <Logo/>
+        </div>
+        <Search />
+        {res ? (
+          <div className="flex gap-2 justify-center items-center abolute mr-28">
+            <IoNotificationsCircleSharp
+              size={30}
+              className="hover:text-indigo-500 hover:animate-out hover:rotate-12 "
+            />
+            <UploadButton />
+            <div className="w-9 h-9 rounded-full">
+              <CgProfile
+                size={30}
+                onClick={nevigateToLoginPage}
+                className={`${
+                  res.avatar ? "hidden" : "hover:text-indigo-500 cursor-pointer"
+                }`}
+              />
+              <img
+                src={res.avatar}
+                alt=""
+                className={`${
+                  res.avatar
+                    ? " w-full h-full object-cover rounded-full"
+                    : "hidden"
+                }`}
+              />
+            </div>
+          </div>
+        ) : (
+          <div className="flex gap-2 justify-center items-center abolute mr-28">
+            <SignupButton />
+          </div>
+        )}
       </header>
-      <div key={id} className="h-[70vh] w-[99vw] flex flex-wrap justify-center items-center relative">
-      <IntroPage/>
-      </div>
-      <div key={id} className="w-full h-screen flex flex-wrap border-black justify-center items-start gap-10 p-5 scroll-smooth ">
+      <div className="h-full w-full flex  items-center overflow-auto ">
+     
+      <aside className={`h-screen w-[20vw]  sticky top-0 bg-white p-10  flex flex-wrap justify-center items-top ${asideVisual?"hidden":""}`}>
+       <Aside/> 
+      </aside>
+      <div
+        className="w-full h-screen flex flex-wrap justify-center items-start pt-12 scroll-smooth bg-white"
+      >
+        <Toast/>
         <Card />
+      </div>
       </div>
     </>
   );

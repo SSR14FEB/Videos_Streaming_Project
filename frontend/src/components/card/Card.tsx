@@ -45,16 +45,17 @@ export default function Card() {
   };
 
   return( 
-    cardData.map((file,index)=>
+ <div className="w-full h-full flex flex-wrap justify-start pl-20 gap-10 items-center  scroll-smooth">
+     {cardData.map((file,index)=>
       <div
       key={index}
-      className="w-96 h-72 rounded-2xl flex flex-wrap justify-center  scroll-smooth"
+      className="w-80 h-72 rounded-2xl flex flex-wrap justify-center scroll-smooth"
       onMouseEnter={()=>handleMouseEnter(index)}
       onMouseLeave={()=>handleMosueLeave(index)}
       >
         <div className=" w-full h-3/5">
           {videoUrl ? (
-            <video
+            <video 
               ref={(el)=>(videoRef.current[index] =el)}
               poster={file.thumbnail}
               className="w-full h-full object-cover rounded-md"
@@ -74,10 +75,11 @@ export default function Card() {
             <b className="text-gray-600">{file.userName}</b>
           </div>
         </div>
-        <div className=" w-full h-fit ">
-          <p className="ml-14">5.1M views 4 years ago</p>
+        <div className="  w-full h-fit ">
+          <p className="ml-16">5.1M views 4 years ago</p>
         </div>
       </div>
-    )
+    )}
+ </div>
 )
 }

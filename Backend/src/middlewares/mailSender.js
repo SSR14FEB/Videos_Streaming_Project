@@ -28,16 +28,17 @@ const mailSender = asyncHandler(async (req, res) => {
     console.log("user", user);
     // Looking to send emails in production? Check out our Email API/SMTP product!
     var transport = await nodemailer.createTransport({
-      host: "sandbox.smtp.mailtrap.io",
-      port: 2525,
+      service:"gmail",
+      port: 465,
+      secure: true,
       auth: {
-        user: "26b181b5a6c119",
-        pass: "020443b5efe5af",
+        user: "streameryourvideos01@gmail.com",
+        pass: "hdrcilvqcihcplqv",
       },
     });
 
     let mailOption = {
-      from: "sonukumar.official501@gmail.com",
+      from: "streameryourvideos01@gmail.com",
       to: user.email,
       subject: "verify your email",
       html: `<body>

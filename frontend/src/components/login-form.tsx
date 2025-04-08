@@ -11,6 +11,8 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useForm } from "react-hook-form"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 type Inputs = {
   email: string;
@@ -26,7 +28,7 @@ export function LoginForm({
     register,
     handleSubmit,
   } = useForm<Inputs>()
-
+  const [res,setRes]=useState("")
  const onSubmit = async(data: Inputs)=>{
    const response = await fetch("http://localhost:8201/users/login",
     {
@@ -34,12 +36,22 @@ export function LoginForm({
       headers:{
       "Content-Type":"application/json"
     },
-    body:JSON.stringify(data)})
-     let res = await response.json()
-  console.log(res)
+    body:JSON.stringify(data),credentials:"include"})
+    .then((response)=> {
+      console.log(response) 
+      return response.json()
+    })
+    .then((res)=>setRes(res.data))
  }
+const navigation = useNavigate()
+const navigateToHomePage = () =>{
+  setTimeout(()=>{
+    navigation("/")
+  },1000)
+}
 
-  return (
+console.log(res)
+return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader className="text-center">
@@ -99,7 +111,7 @@ export function LoginForm({
                   </div>
                   <Input  type="password" {...register("password")} required />
                 </div>
-                <Button type="submit" className="w-full bg-indigo-600">
+                <Button type="submit" className="w-full bg-indigo-600" onClick={navigateToHomePage} >
                   Login
                 </Button>
               </div>

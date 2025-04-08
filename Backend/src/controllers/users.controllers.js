@@ -180,7 +180,7 @@ const logInUser = asyncHandler(async (req, res) => {
 
   const option = {
     httpOnly: true,
-    secure: true,
+    secure:false,
   };
 
   return res
@@ -191,9 +191,7 @@ const logInUser = asyncHandler(async (req, res) => {
       new apiResponse(
         200,
         {
-          user: user,
-          accessToken,
-          refershToken,
+          user:logedInUser,accessToken,refershToken,
         },
         "Loged in successfully"
       )

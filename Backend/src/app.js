@@ -19,7 +19,8 @@ io.on("connection",(verification_notification)=>{
 
 app.use(cors({
     origin:process.env.CORS_ORIGIN,
-    credentials:true
+    methods:"GET,POST,PUT,DELETE",
+    credentials:true,
 }))
 
 app.use(express.json({limit:"16kb"})) // this is use to set be json limit

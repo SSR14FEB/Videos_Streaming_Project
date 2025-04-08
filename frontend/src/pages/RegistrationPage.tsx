@@ -56,6 +56,7 @@ export default function RegistraionPage() {
 
 
   return (
+    <div className="w-full h-full flex items-center justify-center">
     <form action="" onSubmit={handleSubmit(onSubmit)} className="m-10" >
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
@@ -410,5 +411,6 @@ export default function RegistraionPage() {
         </button>
       </div>
     </form>
+    </div>
   );
 }

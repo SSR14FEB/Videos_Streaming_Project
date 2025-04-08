@@ -53,6 +53,7 @@ function ForgetPassword() {
     domainName = parts[1];
   }
   return (
+    <div className="w-full h-full flex flex-wrap justify-center items-center ">
     <div className="w-[60vw] h-[70vh] flex flex-wrap m-20 justify-center items-center">
       <form
         action=""
@@ -142,6 +143,7 @@ function ForgetPassword() {
           </div>
         </div>
       </form>
+    </div>
     </div>
   );
 }
