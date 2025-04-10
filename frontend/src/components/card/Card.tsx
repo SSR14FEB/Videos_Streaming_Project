@@ -49,7 +49,7 @@ export default function Card() {
      {cardData.map((file,index)=>
       <div
       key={index}
-      className="w-80 h-72 rounded-2xl flex flex-wrap justify-center scroll-smooth"
+      className="w-80 h-80 rounded-2xl flex flex-wrap justify-center scroll-smooth"
       onMouseEnter={()=>handleMouseEnter(index)}
       onMouseLeave={()=>handleMosueLeave(index)}
       >

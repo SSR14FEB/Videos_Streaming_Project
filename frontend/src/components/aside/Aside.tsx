@@ -39,26 +39,26 @@ export default function Aside() {
 
   return (
     <div
-      className={`w-56 h-full flex flex-wrap justify-evenly top-12 bg-white  pb-42 relative  `}
+      className={`w-[15vw]  h-full flex flex-wrap justify-end top-12 bg-white  pb-42 relative`}
     >
-      <div className=" w-full h-10 flex justify-center items-center gap-5">
-        <FaHome size={30} />
-        <b className="text-md font-sans pr-10">Home</b>
+      <div className="w-full h-10 flex justify-center items-center gap-5">
+        <FaHome size={20} />
+        <b className="text-sm font-sans pr-10">Home</b>
       </div>
       <div className=" w-full h-10 flex justify-center items-center gap-5 ">
-        <MdSubscriptions size={30} />
+        <MdSubscriptions size={20} />
         <b className="text-sm font-sans">Subscription</b>
       </div>
       <div className=" w-full h-10 flex justify-center items-center gap-5">
-        <RiPlayList2Fill size={30} />
+        <RiPlayList2Fill size={20} />
         <b className="text-sm font-sans pr-10">Playlist</b>
       </div>
       <div className=" w-full h-10 flex justify-center items-center gap-5">
-        <MdOutlineOndemandVideo size={30} />
+        <MdOutlineOndemandVideo size={20} />
         <b className="text-sm font-sans pr-5">Your videos</b>
       </div>
       <div className=" w-full h-10 flex justify-center items-center gap-5">
-        <IoMdSettings size={30} />
+        <IoMdSettings size={20} />
         <b className="text-sm font-sans pr-10">Setings</b>
       </div>
       {res ? (
@@ -102,7 +102,7 @@ export default function Aside() {
         <p className="text-sm font-sans pr-10">Sign out</p>
         </div>
         <div className="w-full h-10 flex justify-center items-center  rounded-sm">
-        <IoMdSettings size={30} />
+        <IoMdSettings size={20} />
         <b className="text-sm font-sans pr-10">Setings</b>
       </div>
         </div>

@@ -6,7 +6,7 @@ import { CgProfile } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
 import Aside from "../components/aside/Aside"
 import { IoNotificationsCircleSharp } from "react-icons/io5";
-import { nanoid } from "nanoid";
+
 
 import useLoginHook from "../custom_hooks/useLoginHook";
 import SignupButton from "@/components/Signup_Button/SignupButton";
@@ -15,7 +15,6 @@ import Toast from "@/components/toast/Toast";
 
 function HeroPage() {
 
-  const id = nanoid();
   const res = useLoginHook() || "";
   const nevigateTo = useNavigate();
   
@@ -69,7 +68,7 @@ function HeroPage() {
       </header>
       <div className="h-full w-full flex  items-center overflow-auto ">
      
-      <aside className={`h-screen w-[20vw]  sticky top-0 bg-white p-10  flex flex-wrap justify-center items-top ${asideVisual?"hidden":""}`}>
+      <aside className={`h-screen w-[20vw]sticky top-0 bg-white pt-10  flex flex-wrap justify-end items-top ${asideVisual?"hidden":""}`}>
        <Aside/> 
       </aside>
       <div
